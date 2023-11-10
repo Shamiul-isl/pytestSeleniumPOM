@@ -1,2 +1,2 @@
 # pytestSeleniumPOM
-This project utilizes Python, PyTest, Selenium, and POM to create sample UI and API tests
+This project utilizes Python, PyTest, Selenium, and POM to create sample UI tests

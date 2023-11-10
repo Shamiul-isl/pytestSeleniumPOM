@@ -1,12 +1,17 @@
-import time
-from selenium import webdriver
+import pytest
+from pages.logged_in_successfully import LoggedInSuccessfullyPage
+from pages.login_page import LoginPage
 
 class TestPositiveScenarios:
-    def test_positive_login(self):
-        # Go to webpage
-        driver = webdriver.Chrome()
-        driver.get("https://practicetestautomation.com/practice-test-login/")
-        time.sleep(10)
+    
+    @pytest.mark.login
+    @pytest.mark.positive
+    def test_positive_login(self, driver):
+        login_page = LoginPage(driver)
+        login_page.open()     
+        login_page.execute_login("student", "Password123")
+        logged_in_page = LoggedInSuccessfullyPage(driver)
+        assert logged_in_page.expected_url == logged_in_page.current_url, "Actual URL is not the same as expected"
+        assert logged_in_page.header == "Logged In Successfully", "Header is not as expected"
+        assert logged_in_page.is_logout_button_displayed(), "Logout button should be visible"
         
-        # Type Username into username field
-        # username_locator = 
